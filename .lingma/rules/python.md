@@ -26,3 +26,62 @@ trigger: manual
 5. **注释风格**：Google风格
 
 6. **缩进**：4个空格，禁止使用Tab
+
+
+### 测试规范
+1. **框架与工具**：
+   - 测试框架：pytest
+
+2. **测试结构**：
+   - 每个测试文件对应一个被测试模块
+   - 每个测试类对应一个被测试类
+   - 每个测试方法对应两个被测试方法，一个是test_debug_方法名，一个是test_方法名
+
+3. **测试示例**：
+```python
+def add(a, b):
+    return a + b
+
+import pytest
+from src.mymodule.math_utils import add
+
+# ---- 1. 仅用于调试的简单测试 ----
+def test_debug_add():
+    assert add(1, 2) == 3
+
+# ---- 2. 参数化测试（覆盖多种情况）----
+@pytest.mark.parametrize("a,b,expected", [
+    (1, 2, 3),
+    (0, 5, 5),
+    (-1, 1, 0),
+    (100, 200, 300),
+])
+def test_add(a, b, expected):
+    assert add(a, b) == expected
+```
+
+```python
+class Calculator:
+    def mul(self, a, b):
+        return a * b
+
+import pytest
+from src.mymodule.calculator import Calculator
+
+# ---- 1. 调试用的简单测试 ----
+def test_debug_mul():
+    calc = Calculator()
+    assert calc.mul(2, 3) == 6
+
+# ---- 2. 参数化测试（多种情况）----
+@pytest.mark.parametrize("a,b,expected", [
+    (2, 3, 6),
+    (0, 5, 0),
+    (-1, 4, -4),
+    (10, -2, -20),
+])
+def test_mul(a, b, expected):
+    calc = Calculator()
+    assert calc.mul(a, b) == expected
+```
+
