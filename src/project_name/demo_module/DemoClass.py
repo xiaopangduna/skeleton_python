@@ -2,7 +2,9 @@
 DemoClass 模块
 包含一个简单的类和加法方法，用于演示测试用例编写
 """
+import logging
 
+logger = logging.getLogger(__name__)
 
 class DemoClass:
     """
@@ -33,4 +35,5 @@ class DemoClass:
             >>> demo.add(-1, 1)
             0
         """
+        logger.debug("Adding %s and %s", a, b)
         return a + b

@@ -85,3 +85,6 @@ def test_mul(a, b, expected):
     assert calc.mul(a, b) == expected
 ```
 
+### 日志规范
+1.**框架与工具**：
+   - **日志框架**：logging

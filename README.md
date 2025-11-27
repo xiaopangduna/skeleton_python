@@ -95,6 +95,9 @@ pytest tests/test_DemoClass.py::TestDemoClass::test_debug_add -v
 
 # 运行参数化测试
 pytest tests/test_DemoClass.py::TestDemoClass::test_add_param -v
+
+# 运行日志测试
+pytest -v --log-cli-level=DEBUG
 ```
 
 ### 使用DemoClass
